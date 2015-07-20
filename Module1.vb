@@ -71,11 +71,11 @@ Module Module1
 
                     'DO NOT CHANGE THIS LINE
                     'CHANGE THESE LINES
-                    If _session.CompanyID & _session.PlantID = "CIC6832205" Then 'TX Plant'
-                        'If _session.CompanyID & _session.PlantID = "CIC6832206" Then 'MX Plant"
-                        'If _session.CompanyID & _session.PlantID = "CIC68322MfgSys" Then 'CT Plant'
+                    'If _session.CompanyID & _session.PlantID = "CIC6832205" Then 'TX Plant'
+                    'If _session.CompanyID & _session.PlantID = "CIC6832206" Then 'MX Plant"
+                    If _session.CompanyID & _session.PlantID = "CIC68322MfgSys" Then 'CT Plant'
                         'If _session.CompanyID & _session.PlantID = "10Mfgsys" Then 'UK Plant'
-                        DaysAhead = 13
+                        DaysAhead = 9
                     End If
 
 
@@ -177,4 +177,16 @@ Module Module1
         sw.Close()
     End Sub
 
+
+    Function CalcBusinessDays(ByVal DStart As Date, ByVal DEnd As Date) As Decimal
+
+        Dim Days As Decimal = DateDiff(DateInterval.Day, DStart, DEnd)
+        Dim Weeks As Integer = Days / 7
+        Dim BusinessDays As Decimal = Days - (Weeks * 2)
+        Return BusinessDays
+        Days = Nothing
+        Weeks = Nothing
+        BusinessDays = Nothing
+
+    End Function
 End Module
